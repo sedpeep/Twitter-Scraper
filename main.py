@@ -35,14 +35,17 @@ def save_to_excel(data, filename):
 
 driver = webdriver.Chrome(options=options)
 driver.get("https://accounts.google.com/v3/signin/identifier?hl=en_GB&ifkv=AXo7B7VGP4Y_gNfwPri72zV40Ii9kmgYbvLRXoOhOeBNkeBYcMPcPOX_Aolo1vK16FetaA4URMIfUA&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S-1140670556%3A1692882589574310")
-
+#email: 
+email = ''
+#password:
+password = ''
 
 #LOGIN
-driver.find_element(By.XPATH,'//*[@id="identifierId"]').send_keys("cerseil327@gmail.com")
+driver.find_element(By.XPATH,'//*[@id="identifierId"]').send_keys(email)
 time.sleep(3)
 driver.find_element(By.XPATH,'//*[@id="identifierNext"]/div/button/span').click()
 time.sleep(5)
-driver.find_element(By.XPATH,'//*[@id="password"]/div[1]/div/div[1]/input').send_keys("Potter1234")
+driver.find_element(By.XPATH,'//*[@id="password"]/div[1]/div/div[1]/input').send_keys(password)
 driver.find_element(By.XPATH,'//*[@id="passwordNext"]/div/button/span').click()
 time.sleep(5)
 
@@ -58,42 +61,8 @@ time.sleep(10)
 #     if window_handle != current_window:
 #         driver.switch_to.window(window_handle)
 #         break
-hashtags = ['inflation pakistan',
-'price hike pakistan',
-'cost of living pakistan',
-'pak politics',
-'govt pakistan',
-'pak government',
-'political crisis pakistan',
-'justice in pakistan',
-'human rights violation pakistan',
-'rights in pakistan',
-'economic downfall pakistan',
-'economic challenges pakistan',
-'poverty in pakistan',
-'financial crisis pakistan',
-'job crisis pakistan',
-'youth unemployment pakistan',
-'power crisis pakistan',
-'load shedding pakistan',
-'democracy crisis pakistan',
-'governance issues pakistan',
-'electoral reforms pakistan',
-'elections pakistan',
-'anti corruption pakistan',
-'transparency pakistan',
-'hope for pakistan',
-'challenges in pakistan',
-'change in pakistan',
-'military rule pakistan',
-'army and politics',
-'foreign influence pakistan',
-'pakistan under pressure',
-'civic issues pakistan',
-'state control pakistan'
-]
+hashtags = ['wow' , 'funny' ,'go']
 
-hash = ['inflation pakistan','leave pakistan','fascist pakistan','fascism pakistan','loadshedding in pakistan']
 unique_texts = []
 seen_texts = set()
 
@@ -104,7 +73,7 @@ for hashtag in hashtags:
     time.sleep(5)
     search = driver.find_element(By.XPATH,
                                  '//*[@id="react-root"]/div/div/div[2]/main/div/div/div/div/div/div[1]/div[1]/div/div/div/div/div/div[1]/div[2]/div/div/div/form/div[1]/div/div/div/label/div[2]/div/input')
-    search.send_keys(hashtag+" lang:en")
+    search.send_keys(hashtag+" lang:en") #for language filtere, you can remove
     search.send_keys(Keys.ENTER)
 
     time.sleep(5)
@@ -148,7 +117,7 @@ for hashtag in hashtags:
 
         print(len(unique_texts))
         # Save the tweets to the Excel file after processing each hashtag
-        save_to_excel(list(unique_texts), "tweets_3.xlsx")
+        save_to_excel(list(unique_texts), "tweets.xlsx")
 # Print the unique texts
 for text in unique_texts:
     print(text)
